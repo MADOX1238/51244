@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ar"> 
+  <head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>دردشة الغرفة</title> 
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+        background-color: #f0f0f0;
+        height: 100vh;
+      }
+      h1 {
+        color: #007bff;
+      }
+      .chat-box {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        max-width: 600px;
+        margin: 0 auto;
+        height: 70vh;
+        overflow-y: auto;
+      }
+      input {
+        width: 80%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+      }
+      button {
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+    </style> 
+  </head> 
+  <body>
+    <h1>غرفة دردشة: <span id="roomTitle"></span></h1>
+    <div class="chat-box" id="chatBox">
+      <p>أهلاً بك في غرفة الدردشة!</p>
+    </div>
+    <input type="text" id="message" placeholder="اكتب رسالتك هنا">
+    <button id="sendMessageBtn">إرسال</button>
+
+    <script>
+      // قراءة البيانات من sessionStorage
+      const roomName = sessionStorage.getItem("roomName");
+      const roomPassword = sessionStorage.getItem("roomPassword");
+
+      // عرض اسم الغرفة في الصفحة
+      document.getElementById("roomTitle").textContent = roomName;
+
+      // إرسال رسالة (مؤقتًا لعرض فكرة الرسائل)
+      document.getElementById('sendMessageBtn').addEventListener('click', function() {
+        const message = document.getElementById('message').value;
+        if (message) {
+          const chatBox = document.getElementById('chatBox');
+          const newMessage = document.createElement('p');
+          newMessage.textContent = `رسالة: ${message}`;
+          chatBox.appendChild(newMessage);
+          document.getElementById('message').value = ''; // مسح مربع النص
+        }
+      });
+    </script>
+  
+</body></html>
